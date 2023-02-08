@@ -1,0 +1,68 @@
+name: Build & Test
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-pip:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10"]
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+        cache-dependency-path: 'pyproject.toml'
+
+    - name: Install dependencies with pip
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install .
+        python -m pip install pytest
+
+    - name: Test with pytest
+      run: pytest
+
+  build-poetry:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10"]
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Install Poetry
+      run: pipx install poetry
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'poetry'
+
+    - name: Install dependencies
+      run: poetry install --no-interaction
+
+    - name: Test with pytest
+      run: poetry run pytest
