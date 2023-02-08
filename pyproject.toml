@@ -1,3 +1,8 @@
+# Packaging
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "nlp_attacks"
 version = "0.1.0"
@@ -10,12 +15,18 @@ readme = "README.md"
 packages = [{include = "nlp_attacks", from = "src"}]
 
 
+# Dependencies
 [tool.poetry.dependencies]
 python = "^3.8.1"
+pip = "^23.0"
 numpy = "^1.24.2"
 pandas = "^1.5.3"
 scikit-learn = "^1.2.1"
 torch = "^1.13.1"
+transformers = "^4.26.0"
+sentencepiece = "^0.1.97"
+textattack = "^0.3.8"
+sentence-transformers = "^2.2.2"
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.18.1"
@@ -28,26 +39,13 @@ pytest-sugar = "^0.9.6"
 matplotlib = "^3.6.3"
 seaborn = "^0.12.2"
 
-[tool.poetry.group.formatter.dependencies]
-flake8 = "^6.0.0"
-flake8-docstrings = "^1.7.0"
-flake8-pyproject = "^1.2.2"
-flake8-simplify = "^0.19.3"
-flake8-requirements = "^1.7.7"
-flake8-use-fstring = "^1.4"
-flake8-pytest-style = "^1.6.0"
-black = {extras = ["jupyter"], version = "^23.1.0"}
-isort = "^5.12.0"
-
 [tool.poetry.group.jupyter.dependencies]
 ipykernel = "^6.21.1"
 ipywidgets = ">=7.0,<8.0"
+jupyter = "^1.0.0"
 
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
+# Tool configuration
 [tool.isort]
 profile = "black"
 
@@ -78,7 +76,6 @@ legacy_tox_ini = """
 
     [testenv]
     description = run unit tests
-    skip_install = true
     deps =
         pytest
     commands =
@@ -90,9 +87,24 @@ legacy_tox_ini = """
     deps =
         black
         isort
+        pyupgrade
+        blacken-docs
     commands =
         black src
         isort src
+        pyupgrade src
+        blacken-docs src
+
+    [testenv:nb_format]
+    description = run formatters on notebooks
+    skip_install = true
+    deps =
+        nbqa[toolchain]
+    commands =
+        nbqa black notebooks
+        nbqa isort notebooks --float-to-top
+        nbqa pyupgrade notebooks
+        nbqa blacken-docs notebooks --nbqa-md
 
     [testenv:lint]
     description = run linters
@@ -107,4 +119,5 @@ legacy_tox_ini = """
         flake8-pytest-style
     commands =
         flake8 src tests
+        nbqa flake8 notebooks
 """
