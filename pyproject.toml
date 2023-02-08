@@ -2,29 +2,47 @@
 name = "nlp_attacks"
 version = "0.1.0"
 description = "NLP project on adversarial attacks for the NLP course at ENSAE"
-authors = ["Gabriel Watkinson <gabriel.watkinson@ensae.fr>"]
+authors = [
+  "Gabriel Watkinson <gabriel.watkinson@ensae.fr>",
+  "Baptiste Pasquier <baptiste.pasquier@ensae.fr>"
+]
 readme = "README.md"
 packages = [{include = "nlp_attacks", from = "src"}]
+
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
 numpy = "^1.24.2"
 pandas = "^1.5.3"
-matplotlib = "^3.6.3"
-seaborn = "^0.12.2"
 scikit-learn = "^1.2.1"
 torch = "^1.13.1"
 
-
 [tool.poetry.group.dev.dependencies]
-flake8 = "^6.0.0"
-black = {extras = ["jupyter"], version = "^23.1.0"}
+poethepoet = "^0.18.1"
 pre-commit = "^3.0.4"
 pytest = "^7.2.1"
 pytest-cov = "^4.0.0"
-poethepoet = "^0.18.1"
+pytest-sugar = "^0.9.6"
+
+[tool.poetry.group.plotting.dependencies]
+matplotlib = "^3.6.3"
+seaborn = "^0.12.2"
+
+[tool.poetry.group.formatter.dependencies]
+flake8 = "^6.0.0"
+flake8-docstrings = "^1.7.0"
+flake8-pyproject = "^1.2.2"
+flake8-simplify = "^0.19.3"
+flake8-requirements = "^1.7.7"
+flake8-use-fstring = "^1.4"
+flake8-pytest-style = "^1.6.0"
+black = {extras = ["jupyter"], version = "^23.1.0"}
+isort = "^5.12.0"
+
+[tool.poetry.group.jupyter.dependencies]
 ipykernel = "^6.21.1"
 ipywidgets = ">=7.0,<8.0"
+
 
 [build-system]
 requires = ["poetry-core"]
@@ -32,6 +50,12 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.isort]
 profile = "black"
+
+[tool.flake8]
+ignore = ['E203', 'E501']
+max-line-length = 88
+count = true
+docstring-convention = 'google'
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
@@ -45,3 +69,42 @@ torch_cuda = [
   { cmd = "poetry add numpy torch" },
   { cmd = "pip install torch --force-reinstall --extra-index-url https://download.pytorch.org/whl/cu117" },
 ]
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    min_version = 4.0
+    env_list = format, lint, py{38,39,310,311}
+
+    [testenv]
+    description = run unit tests
+    skip_install = true
+    deps =
+        pytest
+    commands =
+        pytest tests
+
+    [testenv:format]
+    description = run formatters
+    skip_install = true
+    deps =
+        black
+        isort
+    commands =
+        black src
+        isort src
+
+    [testenv:lint]
+    description = run linters
+    skip_install = true
+    deps =
+        flake8
+        flake8-docstrings
+        flake8-pyproject
+        flake8-simplify
+        flake8-requirements
+        flake8-use-fstring
+        flake8-pytest-style
+    commands =
+        flake8 src tests
+"""
