@@ -12,7 +12,12 @@ authors = [
   "Baptiste Pasquier <baptiste.pasquier@ensae.fr>"
 ]
 readme = "README.md"
+license="MIT"
+repository="https://github.com/gwatkinson/nlp_adversarial_attacks"
 packages = [{include = "nlp_attacks", from = "src"}]
+
+[tool.poetry.scripts]
+get_data = 'src.nlp_attacks.download_data:main'
 
 
 # Dependencies
