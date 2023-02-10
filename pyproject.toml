@@ -101,8 +101,8 @@ legacy_tox_ini = """
     commands =
         black src
         isort src
-        pyupgrade src/**/*.py
-        blacken-docs src/**/*.py
+#        pyupgrade src/**/*.py
+#        blacken-docs src/**/*.py
 
     [testenv:nb_format]
     description = run formatters on notebooks
@@ -114,19 +114,19 @@ legacy_tox_ini = """
         nbqa isort notebooks --float-to-top
         nbqa pyupgrade notebooks
         nbqa blacken-docs notebooks --nbqa-md
+	    nbqa flake8 notebooks
 
     [testenv:lint]
     description = run linters
     skip_install = true
     deps =
         flake8
- #       flake8-docstrings
+        flake8-docstrings
         flake8-pyproject
         flake8-simplify
-#        flake8-requirements
+        flake8-requirements
         flake8-use-fstring
         flake8-pytest-style
     commands =
         flake8 src tests
-        nbqa flake8 notebooks
 """
