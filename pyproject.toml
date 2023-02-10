@@ -23,14 +23,14 @@ get_data = 'src.nlp_attacks.download_data:main'
 # Dependencies
 [tool.poetry.dependencies]
 python = "^3.8.1"
-
-[tool.poetry.group.dev.dependencies]
 pip = "^23.0"
 poethepoet = "^0.18.1"
 pre-commit = "^3.0.4"
 pytest = "^7.2.1"
 pytest-cov = "^4.0.0"
 pytest-sugar = "^0.9.6"
+gdown = "^4.6.0"
+click = "<8.1.0"
 
 [tool.poetry.group.data_science.dependencies]
 numpy = "^1.24.2"
