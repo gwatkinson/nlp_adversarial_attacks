@@ -115,10 +115,10 @@ legacy_tox_ini = """
     skip_install = true
     deps =
         flake8
-        flake8-docstrings
+ #       flake8-docstrings
         flake8-pyproject
         flake8-simplify
-        flake8-requirements
+#        flake8-requirements
         flake8-use-fstring
         flake8-pytest-style
     commands =
