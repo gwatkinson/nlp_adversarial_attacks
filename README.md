@@ -1,5 +1,10 @@
 # NLP project for the course "Machine Learning for Natural Language Processing" at ENSAE
 
+[![Build & Test](https://github.com/gwatkinson/nlp_adversarial_attacks/actions/workflows/main.yml/badge.svg)](https://github.com/gwatkinson/nlp_adversarial_attacks/actions/workflows/main.yml)
+[![Code quality](https://github.com/gwatkinson/nlp_adversarial_attacks/actions/workflows/quality.yml/badge.svg)](https://github.com/gwatkinson/nlp_adversarial_attacks/actions/workflows/quality.yml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![GitHub](https://img.shields.io/github/license/gwatkinson/nlp_adversarial_attacks)
+
 * Gabriel Watkinson
 * Baptiste Pasquier
 
