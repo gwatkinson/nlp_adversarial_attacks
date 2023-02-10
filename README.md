@@ -5,7 +5,7 @@
 
 ## Useful resources
 
-* Link of the github repository : https://github.com/gwatkinson/NLP_Project
+* Link of the github repository : https://github.com/gwatkinson/nlp_adversarial_attacks
 * Link of the overleaf report : https://www.overleaf.com/project/63e0e21c7c4c9b1792761513
 * Main paper :
   * Paper : https://aclanthology.org/2022.findings-acl.289.pdf
