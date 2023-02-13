@@ -23,32 +23,27 @@ get_data = 'src.nlp_attacks.download_data:main'
 # Dependencies
 [tool.poetry.dependencies]
 python = "^3.8.1"
+numpy = "^1.24.2"
+pandas = "^1.5.3"
+scikit-learn = "^1.2.1"
+torch = "^1.13.1"
+transformers = "^4.26.0"
+sentencepiece = "^0.1.97"
+textattack = "^0.3.8"
+sentence-transformers = "^2.2.2"
+matplotlib = "^3.6.3"
+seaborn = "^0.12.2"
+spacy = "^3.5.0"
+gdown = "^4.6.0"
+click = "<8.1.0"
+
+[tool.poetry.group.dev.dependencies]
 pip = "^23.0"
 poethepoet = "^0.18.1"
 pre-commit = "^3.0.4"
 pytest = "^7.2.1"
 pytest-cov = "^4.0.0"
 pytest-sugar = "^0.9.6"
-gdown = "^4.6.0"
-click = "<8.1.0"
-
-[tool.poetry.group.data_science.dependencies]
-numpy = "^1.24.2"
-pandas = "^1.5.3"
-scikit-learn = "^1.2.1"
-
-[tool.poetry.group.torch.dependencies]
-torch = "^1.13.1"
-transformers = "^4.26.0"
-sentencepiece = "^0.1.97"
-textattack = "^0.3.8"
-sentence-transformers = "^2.2.2"
-
-[tool.poetry.group.plotting.dependencies]
-matplotlib = "^3.6.3"
-seaborn = "^0.12.2"
-
-[tool.poetry.group.jupyter.dependencies]
 ipykernel = "^6.21.1"
 ipywidgets = ">=7.0,<8.0"
 jupyter = "^1.0.0"
