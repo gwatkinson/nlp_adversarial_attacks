@@ -19,6 +19,7 @@
 * Course repo :
   * https://github.com/PierreColombo/NLP_ENSAE_2023
   * https://github.com/PierreColombo/NLP_ENSAE_2023/blob/main/project/project_2_attacks.md
+  * https://github.com/PierreColombo/NLP_ENSAE_2023/blob/main/project/project_general_instructions.md
   * https://nlp-ensae.github.io/
 * Other papers :
   * https://arxiv.org/pdf/2212.09171.pdf
