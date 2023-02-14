@@ -30,3 +30,12 @@
 * Useful repos :
   * https://textattack.readthedocs.io/en/latest/
   * https://allenai.org/allennlp
+
+## Direction to explore
+
+* https://flashtext.readthedocs.io/en/latest/
+* https://neptune.ai/blog/data-augmentation-nlp
+* https://github.com/makcedward/nlpaug
+* https://github.com/google-research/uda
+* https://github.com/jasonwei20/eda_nlp
+* https://medium.com/analytics-vidhya/everything-you-need-to-know-about-adversarial-training-in-nlp-b249301b6229
